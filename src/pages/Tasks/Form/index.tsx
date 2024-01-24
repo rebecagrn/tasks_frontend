@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../services/api";
@@ -23,35 +23,35 @@ const Tasks: React.FC = () => {
     description: "",
   });
 
-  function backToHome() {
+  const backToHome = () => {
     navigate("/");
-  }
+  };
 
-  function updateModel(e: ChangeEvent<HTMLInputElement>) {
+  const updateModel = (e: ChangeEvent<HTMLInputElement>) => {
     setModel({
       ...model,
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (id !== undefined) {
-      const response = await api.put(`/tasks/${id}`, model);
+      await api.put(`/tasks/${id}`, model);
     } else {
-      const response = await api.post("/tasks", model);
+      await api.post("/tasks", model);
     }
     backToHome();
-  }
+  };
 
-  async function findTask(id: string) {
-    const response = await api.get(`/tasks/${id}`);
+  const findTask = async (taskId: string) => {
+    const response = await api.get(`/tasks/${taskId}`);
     setModel({
       title: response.data.title,
       description: response.data.description,
     });
-  }
+  };
 
   return (
     <div className="container">
@@ -69,7 +69,7 @@ const Tasks: React.FC = () => {
               type="text"
               name="title"
               value={model.title}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)}
+              onChange={updateModel}
             />
           </Form.Group>
 
@@ -80,7 +80,7 @@ const Tasks: React.FC = () => {
               rows={3}
               name="description"
               value={model.description}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)}
+              onChange={updateModel}
             />
           </Form.Group>
 

@@ -3,7 +3,6 @@ import { Badge, Button, Table } from "react-bootstrap";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-
 import "./index.css";
 
 interface ITask {
@@ -23,19 +22,22 @@ const Tasks: React.FC = () => {
     loadTasks();
   }, []);
 
-  async function loadTasks() {
-    const response = await api.get("tasks");
-    console.log(response);
-    setTasks(response.data);
-  }
+  const loadTasks = async () => {
+    try {
+      const response = await api.get("tasks");
+      setTasks(response.data);
+    } catch (error) {
+      console.error("Error loading tasks:", error);
+    }
+  };
 
-  function newTask() {
+  const newTask = () => {
     navigate("/nova-tarefa");
-  }
+  };
 
-  function editTask(id: number) {
-    navigate(`/nova-tarefa/${id}`);
-  }
+  const editTask = (taskId: number) => {
+    navigate(`/nova-tarefa/${taskId}`);
+  };
 
   return (
     <div className="container">
@@ -63,7 +65,7 @@ const Tasks: React.FC = () => {
               <td>{format(task.updated_at, "dd/MM/yyyy HH:mm:ss")}</td>
               <td>
                 <Badge bg="warning" text="dark">
-                  {task.finished}
+                  {task.finished ? "Concluída" : "Pendente"}
                 </Badge>
               </td>
               <td>
