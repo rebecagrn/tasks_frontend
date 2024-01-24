@@ -56,7 +56,7 @@ const Tasks: React.FC = () => {
   return (
     <Container>
       <div className="task-header mt-4">
-        <h3>Tasks page</h3>
+        <h3>Criar nova tarefa</h3>
         <Button size="sm" variant="dark" onClick={backToPage}>
           Voltar
         </Button>
@@ -86,7 +86,7 @@ const Tasks: React.FC = () => {
             </Form.Group>
 
             <Button variant="dark" type="submit">
-              Submit
+              Salvar
             </Button>
           </Form>
         </Col>

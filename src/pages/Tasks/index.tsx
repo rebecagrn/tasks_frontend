@@ -90,8 +90,8 @@ const Tasks: React.FC = () => {
                   <td>{task.title}</td>
                   <td>{format(task.updated_at, "dd/MM/yyyy HH:mm:ss")}</td>
                   <td>
-                    <Badge bg="warning" text="dark">
-                      {task.finished ? "Concluída" : "Pendente"}
+                    <Badge bg={task.finished ? "secondary" : "danger"}>
+                      {task.finished ? "DONE" : "PENDING"}
                     </Badge>
                   </td>
                   <td>

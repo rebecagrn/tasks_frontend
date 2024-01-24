@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Item as={Link} className="nav-link" to="/">
+            <Nav.Item as={Link} className="nav-link" to="/nova-tarefa">
               Início
             </Nav.Item>
             <Nav.Item as={Link} className="nav-link" to="/tarefas">
