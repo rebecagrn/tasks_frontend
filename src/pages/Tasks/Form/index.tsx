@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../services/api";
 
@@ -54,42 +54,44 @@ const Tasks: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <div className="task-header">
-        <h3 className="my-5">Tasks page</h3>
+    <Container>
+      <div className="task-header mt-4">
+        <h3>Tasks page</h3>
         <Button size="sm" variant="dark" onClick={backToHome}>
           Voltar
         </Button>
       </div>
-      <div className="container">
-        <Form onSubmit={onSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Título</Form.Label>
-            <Form.Control
-              type="text"
-              name="title"
-              value={model.title}
-              onChange={updateModel}
-            />
-          </Form.Group>
+      <Row className="mt-4">
+        <Col md={{ span: 6, offset: 3 }}>
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Título</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={model.title}
+                onChange={updateModel}
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Descrição</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              name="description"
-              value={model.description}
-              onChange={updateModel}
-            />
-          </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Descrição</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                value={model.description}
+                onChange={updateModel}
+              />
+            </Form.Group>
 
-          <Button variant="dark" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
-    </div>
+            <Button variant="dark" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
