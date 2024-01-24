@@ -23,8 +23,8 @@ const Tasks: React.FC = () => {
     description: "",
   });
 
-  const backToHome = () => {
-    navigate("/");
+  const backToPage = () => {
+    navigate("/tarefas");
   };
 
   const updateModel = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const Tasks: React.FC = () => {
     } else {
       await api.post("/tasks", model);
     }
-    backToHome();
+    backToPage();
   };
 
   const findTask = async (taskId: string) => {
@@ -57,7 +57,7 @@ const Tasks: React.FC = () => {
     <Container>
       <div className="task-header mt-4">
         <h3>Tasks page</h3>
-        <Button size="sm" variant="dark" onClick={backToHome}>
+        <Button size="sm" variant="dark" onClick={backToPage}>
           Voltar
         </Button>
       </div>

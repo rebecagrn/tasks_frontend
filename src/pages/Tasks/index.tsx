@@ -41,8 +41,8 @@ const Tasks: React.FC = () => {
 
   return (
     <Container>
-      <div className="task-header">
-        <h1 className="my-5">Tasks page</h1>
+      <div className="task-header my-5">
+        <h3>Tasks page</h3>
         <Button size="sm" variant="dark" onClick={newTask}>
           Nova tarefa
         </Button>
