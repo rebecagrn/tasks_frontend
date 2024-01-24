@@ -1,15 +1,16 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Tasks from "./pages/Tasks";
 
-const Routes: React.FC = () => {
+const AppRoutes: React.FC = () => {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/tarefas" exact component={Tasks} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/tarefas" element={<Tasks />} />
+    </Routes>
   );
 };
 
-export default Routes;
+export default AppRoutes;
