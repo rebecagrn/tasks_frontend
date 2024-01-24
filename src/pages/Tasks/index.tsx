@@ -33,6 +33,7 @@ const Tasks: React.FC = () => {
 
   async function finishTask({ taskId }: { taskId: number }) {
     await api.patch(`/tasks/${taskId}`);
+    loadTasks();
   }
 
   const deleteTask = async (taskId: number) => {
