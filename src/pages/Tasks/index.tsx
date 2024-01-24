@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Button, Table } from "react-bootstrap";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+
+import "./index.css";
 
 interface ITask {
   id: number;
@@ -14,6 +17,7 @@ interface ITask {
 
 const Tasks: React.FC = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadTasks();
@@ -25,9 +29,22 @@ const Tasks: React.FC = () => {
     setTasks(response.data);
   }
 
+  function newTask() {
+    navigate("/nova-tarefa");
+  }
+
+  function editTask(id: number) {
+    navigate(`/nova-tarefa/${id}`);
+  }
+
   return (
     <div className="container">
-      <h1 className="my-5">Tasks page</h1>
+      <div className="task-header">
+        <h1 className="my-5">Tasks page</h1>
+        <Button size="sm" variant="dark" onClick={newTask}>
+          Nova tarefa
+        </Button>
+      </div>
       <Table striped bordered hover variant="dark" className="text-center">
         <thead>
           <tr>
@@ -50,7 +67,9 @@ const Tasks: React.FC = () => {
                 </Badge>
               </td>
               <td>
-                <Button size="sm">Editar</Button>{" "}
+                <Button size="sm" onClick={() => editTask(task.id)}>
+                  Editar
+                </Button>{" "}
                 <Button size="sm" variant="success">
                   Finalizar
                 </Button>{" "}
