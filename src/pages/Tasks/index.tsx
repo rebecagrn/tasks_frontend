@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Table } from "react-bootstrap";
+import { Badge, Button, Table } from "react-bootstrap";
 import { format } from "date-fns";
 import api from "../../services/api";
 
@@ -48,6 +48,18 @@ const Tasks: React.FC = () => {
                 <Badge bg="warning" text="dark">
                   {task.finished}
                 </Badge>
+              </td>
+              <td>
+                <Button size="sm">Editar</Button>{" "}
+                <Button size="sm" variant="success">
+                  Finalizar
+                </Button>{" "}
+                <Button size="sm" variant="info">
+                  Visualizar
+                </Button>{" "}
+                <Button size="sm" variant="danger">
+                  Remover
+                </Button>{" "}
               </td>
             </tr>
           ))}
