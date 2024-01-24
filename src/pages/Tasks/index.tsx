@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./index.css";
 
-interface ITask {
+export interface ITask {
   id: number;
   title: string;
   description: string;
@@ -37,6 +37,10 @@ const Tasks: React.FC = () => {
 
   const editTask = (taskId: number) => {
     navigate(`/nova-tarefa/${taskId}`);
+  };
+
+  const viewTask = (taskId: number) => {
+    navigate(`/tarefas/${taskId}`);
   };
 
   return (
@@ -77,7 +81,11 @@ const Tasks: React.FC = () => {
                     <Button size="sm" variant="success">
                       Finalizar
                     </Button>{" "}
-                    <Button size="sm" variant="info">
+                    <Button
+                      size="sm"
+                      variant="info"
+                      onClick={() => viewTask(task.id)}
+                    >
                       Visualizar
                     </Button>{" "}
                     <Button size="sm" variant="danger">

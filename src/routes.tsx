@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
 import TasksForm from "./pages/Tasks/Form";
+import TasksDetail from "./pages/Tasks/Detail";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/tarefas" element={<Tasks />} />
       <Route path="/nova-tarefa" element={<TasksForm />} />
       <Route path="/nova-tarefa/:id" element={<TasksForm />} />
+      <Route path="/tarefas/:id" element={<TasksDetail />} />
     </Routes>
   );
 };
