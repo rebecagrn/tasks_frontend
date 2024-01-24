@@ -43,9 +43,13 @@ const Tasks: React.FC = () => {
     navigate(`/tarefas/${taskId}`);
   };
 
-  const finishTask = (taskId: number) => {
-    navigate(`/tarefas/${taskId}`);
-  };
+  async function finishTask(taskId: number) {
+    await api.patch(`/tarefas/${taskId}`);
+  }
+
+  async function deleteTask(taskId: number) {
+    await api.delete(`/tarefas/${taskId}`);
+  }
 
   return (
     <Container>
@@ -101,7 +105,11 @@ const Tasks: React.FC = () => {
                     >
                       Visualizar
                     </Button>{" "}
-                    <Button size="sm" variant="danger">
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => deleteTask(task.id)}
+                    >
                       Remover
                     </Button>{" "}
                   </td>
