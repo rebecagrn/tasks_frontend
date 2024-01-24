@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Table } from "react-bootstrap";
+import { format } from "date-fns";
 import api from "../../services/api";
 
 interface ITask {
@@ -27,7 +28,7 @@ const Tasks: React.FC = () => {
   return (
     <div className="container">
       <h1 className="my-5">Tasks page</h1>
-      <Table striped bordered hover variant="dark">
+      <Table striped bordered hover variant="dark" className="text-center">
         <thead>
           <tr>
             <th>ID</th>
@@ -42,7 +43,7 @@ const Tasks: React.FC = () => {
             <tr key={task.id}>
               <td>{task.id}</td>
               <td>{task.title}</td>
-              <td>{task.updated_at.toLocaleString()}</td>
+              <td>{format(task.updated_at, "dd/MM/yyyy HH:mm:ss")}</td>
               <td>
                 <Badge bg="warning" text="dark">
                   {task.finished}
