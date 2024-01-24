@@ -31,6 +31,26 @@ const Tasks: React.FC = () => {
     }
   };
 
+  async function finishTask({ taskId }: { taskId: number }) {
+    await api.patch(`/tasks/${taskId}`);
+  }
+
+  const deleteTask = async (taskId: number) => {
+    try {
+      const existingTask = tasks.find((task) => task.id === taskId);
+
+      if (!existingTask) {
+        console.error(`Task with ID ${taskId} not found.`);
+        return;
+      }
+
+      await api.delete(`/tasks/${taskId}`);
+      loadTasks();
+    } catch (error) {
+      console.error(`Error deleting task with ID ${taskId}:`, error);
+    }
+  };
+
   const newTask = () => {
     navigate("/nova-tarefa");
   };
@@ -42,14 +62,6 @@ const Tasks: React.FC = () => {
   const viewTask = (taskId: number) => {
     navigate(`/tarefas/${taskId}`);
   };
-
-  async function finishTask(taskId: number) {
-    await api.patch(`/tarefas/${taskId}`);
-  }
-
-  async function deleteTask(taskId: number) {
-    await api.delete(`/tarefas/${taskId}`);
-  }
 
   return (
     <Container>
@@ -94,7 +106,7 @@ const Tasks: React.FC = () => {
                       size="sm"
                       disabled={task.finished}
                       variant="success"
-                      onClick={() => finishTask(task.id)}
+                      onClick={() => finishTask({ taskId: task.id })}
                     >
                       Finalizar
                     </Button>{" "}
