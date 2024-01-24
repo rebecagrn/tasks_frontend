@@ -43,6 +43,10 @@ const Tasks: React.FC = () => {
     navigate(`/tarefas/${taskId}`);
   };
 
+  const finishTask = (taskId: number) => {
+    navigate(`/tarefas/${taskId}`);
+  };
+
   return (
     <Container>
       <div className="task-header my-5">
@@ -75,10 +79,19 @@ const Tasks: React.FC = () => {
                     </Badge>
                   </td>
                   <td>
-                    <Button size="sm" onClick={() => editTask(task.id)}>
+                    <Button
+                      size="sm"
+                      disabled={task.finished}
+                      onClick={() => editTask(task.id)}
+                    >
                       Editar
                     </Button>{" "}
-                    <Button size="sm" variant="success">
+                    <Button
+                      size="sm"
+                      disabled={task.finished}
+                      variant="success"
+                      onClick={() => finishTask(task.id)}
+                    >
                       Finalizar
                     </Button>{" "}
                     <Button
