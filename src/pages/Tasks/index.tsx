@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Button, Table, Container, Row, Col } from "react-bootstrap";
+import { Trash, Pencil, Eye, CalendarCheck, Plus } from "@phosphor-icons/react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
@@ -65,11 +66,11 @@ const Tasks: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container data-bs-theme="dark">
       <div className="task-header my-5">
-        <h3>Tasks page</h3>
-        <Button size="sm" variant="dark" onClick={newTask}>
-          Nova tarefa
+        <h3>Todo List</h3>
+        <Button size="lg" variant="primary" onClick={newTask}>
+          Criar <Plus size={24} />
         </Button>
       </div>
       <Row>
@@ -77,8 +78,7 @@ const Tasks: React.FC = () => {
           <Table striped bordered hover responsive className="text-center">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Titulo</th>
+                <th>Título</th>
                 <th>Data de atualização</th>
                 <th>Status</th>
                 <th>Ações</th>
@@ -87,7 +87,6 @@ const Tasks: React.FC = () => {
             <tbody>
               {tasks.map((task) => (
                 <tr key={task.id}>
-                  <td>{task.id}</td>
                   <td>{task.title}</td>
                   <td>{format(task.updated_at, "dd/MM/yyyy HH:mm:ss")}</td>
                   <td>
@@ -100,30 +99,34 @@ const Tasks: React.FC = () => {
                       size="sm"
                       disabled={task.finished}
                       onClick={() => editTask(task.id)}
+                      title="Editar"
                     >
-                      Editar
+                      <Pencil size={32} />
                     </Button>{" "}
                     <Button
                       size="sm"
                       disabled={task.finished}
                       variant="success"
                       onClick={() => finishTask({ taskId: task.id })}
+                      title="Finalizar"
                     >
-                      Finalizar
+                      <CalendarCheck size={32} />
                     </Button>{" "}
                     <Button
                       size="sm"
                       variant="info"
                       onClick={() => viewTask(task.id)}
+                      title="Visualizar"
                     >
-                      Visualizar
+                      <Eye size={32} />
                     </Button>{" "}
                     <Button
                       size="sm"
                       variant="danger"
                       onClick={() => deleteTask(task.id)}
+                      title="Excluir"
                     >
-                      Remover
+                      <Trash size={32} />
                     </Button>{" "}
                   </td>
                 </tr>

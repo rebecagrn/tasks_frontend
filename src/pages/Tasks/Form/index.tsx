@@ -54,40 +54,44 @@ const Tasks: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container data-bs-theme="dark">
       <div className="task-header mt-4">
-        <h3>Criar nova tarefa</h3>
-        <Button size="sm" variant="dark" onClick={backToPage}>
+        <h4>Crie uma nova tarefa</h4>
+        <Button size="lg" variant="primary" onClick={backToPage}>
           Voltar
         </Button>
       </div>
-      <Row className="mt-4">
+      <Row className="mt-4 pt-5">
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label>Título</Form.Label>
               <Form.Control
                 type="text"
                 name="title"
                 value={model.title}
                 onChange={updateModel}
+                placeholder="Escreva um título para a nova tarefa"
+                className="p-3"
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Descrição</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
                 name="description"
                 value={model.description}
                 onChange={updateModel}
+                placeholder="Escreva uma descrição"
+                className="p-3"
               />
             </Form.Group>
 
-            <Button variant="dark" type="submit">
-              Salvar
-            </Button>
+            <div className="d-flex justify-content-end">
+              <Button variant="primary" type="submit" size="lg">
+                Salvar
+              </Button>
+            </div>
           </Form>
         </Col>
       </Row>

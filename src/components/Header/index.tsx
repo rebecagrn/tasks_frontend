@@ -11,7 +11,9 @@ const Header: React.FC = () => {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="/">Tasks App</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <strong>TODO App</strong>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

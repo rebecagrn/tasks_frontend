@@ -1,0 +1,8 @@
+/* App.css */
+.dark-body {
+  background-color: #212529;
+  color: #fefefe;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
