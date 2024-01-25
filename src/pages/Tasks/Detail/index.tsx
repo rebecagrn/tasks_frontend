@@ -25,7 +25,7 @@ const Detail: React.FC = () => {
     <Container>
       <div className="task-header my-5">
         <h3>Tasks detail</h3>
-        <Button size="lg" variant="dark" onClick={() => navigate(-1)}>
+        <Button size="lg" variant="primary" onClick={() => navigate(-1)}>
           Voltar
         </Button>
       </div>
